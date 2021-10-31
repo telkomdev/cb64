@@ -43,7 +43,7 @@ static void init_b64_table_dict()
 static uint8_t base64_table_dict_find(char key)
 {
     for (int i = 0; i < B64_TABLE_SIZE; i++)
-	{
+    {
         if (dict[i].key == key)
             return i;
     }
