@@ -45,7 +45,7 @@ int main(int argc, char** argv)
 	}
 
 	char* filename = argv[1];
-	char* filename_out = "../testdata/out.txt";
+	char* filename_out = "./testdata/out.txt";
 
 	printf("filename : %s\n", filename);
 
