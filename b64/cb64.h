@@ -154,7 +154,7 @@ int decode_b64(const unsigned char* src, size_t src_size, unsigned char** dst, s
     if (_dst == NULL)
         return -1;
 
-    FILE* base64_in_f = fmemopen((void*)src, src_size+1, "r");
+    FILE* base64_in_f = fmemopen((void*)src, src_size, "r");
     FILE* text_f = fmemopen((void*)_dst, sizeof(*_dst) * _dst_size, "w");
 
     unsigned char buffer[5];
