@@ -12,8 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      matrix:
-        node-version: [12.x]
+      fail-fast: false
 
     steps:
       - uses: actions/checkout@v2
@@ -21,6 +20,10 @@ jobs:
         run: chmod +x ./scripts/install_ubuntu_deps
       - name: Install Ubuntu dependecies
         run: bash ./scripts/install_ubuntu_deps
+      - name: Check Builder
+        run: |
+          cmake --version
+          gcc --version
       - name: Build Project
         run: mkdir build && cd build/ && cmake .. -DCMAKE_C_COMPILER=gcc && make
       - name: Run example
