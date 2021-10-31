@@ -1,0 +1,27 @@
+name: cb64 CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set permission to install_ubuntu_deps
+        run: chmod +x ./scripts/install_ubuntu_deps
+      - name: Install Ubuntu dependecies
+        run: bash ./scripts/install_ubuntu_deps
+      - name: Build Project
+        run: mkdir build && cd build/ && cmake .. && make
+      - name: Run example
+        run: ../bin/cb64 ../testdata/octocat.png 
