@@ -22,6 +22,6 @@ jobs:
       - name: Install Ubuntu dependecies
         run: bash ./scripts/install_ubuntu_deps
       - name: Build Project
-        run: mkdir build && cd build/ && cmake .. && make
+        run: mkdir build && cd build/ && cmake .. -DCMAKE_C_COMPILER=gcc && make
       - name: Run example
         run: ../bin/cb64 ../testdata/octocat.png 
