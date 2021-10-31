@@ -9,7 +9,8 @@
 
 int get_file_size(size_t* size, FILE* f);
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) 
+{
 
 	// unsigned char* input = "wur0";
 	// unsigned char* dst = NULL;
@@ -87,7 +88,7 @@ int main(int argc, char** argv) {
 
 	// decode file from base64
 
-	// char* filename = "../testdata/haha.txt";
+	// char* filename = "../testdata/out.txt";
 	// char* filename_out = "../testdata/out.png";
 	// FILE* file;
 	// FILE* file_out;
@@ -125,6 +126,7 @@ int main(int argc, char** argv) {
 	// free(dst_decode);
 	// fclose(file);
 	// fclose(file_out);
+
 	return 0;
 }
 
