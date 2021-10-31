@@ -2,6 +2,8 @@
 
 Base64 Encoding implementation in C Programming Language
 
+[![cb64 CI](https://github.com/telkomdev/cb64/actions/workflows/ci.yml/badge.svg)](https://github.com/telkomdev/cb64/actions/workflows/ci.yml)
+
 Spec: https://datatracker.ietf.org/doc/html/rfc4648#page-5
 
 ### Header only
