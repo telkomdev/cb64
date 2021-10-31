@@ -27,4 +27,4 @@ jobs:
       - name: Build Project
         run: mkdir build && cd build/ && cmake .. -DCMAKE_C_COMPILER=gcc && make
       - name: Run example
-        run: ../bin/cb64 ../testdata/octocat.png 
+        run: ./bin/cb64 ./testdata/octocat.png
