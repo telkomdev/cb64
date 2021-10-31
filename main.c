@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 	// printf("%lu\n", dst_size_decode);
 
 
-    // free(dst);
+	// free(dst);
 	// free(dst_decode);
 
 	// ---------------------------
@@ -40,30 +40,30 @@ int main(int argc, char** argv)
 	// encode file to base64
 
 	if (argc < 2)
-    {
-        EXIT_ERR("required filename");
-    }
+	{
+		EXIT_ERR("required filename");
+	}
 
-    char* filename = argv[1];
+	char* filename = argv[1];
 	char* filename_out = "../testdata/out.txt";
 
-    printf("filename : %s\n", filename);
+	printf("filename : %s\n", filename);
 
 	FILE* file;
 	FILE* file_out;
 
-    file = fopen(filename, "rb");
-    if (file == NULL)
-    {
-        EXIT_ERR("file not found");
-    }
+	file = fopen(filename, "rb");
+	if (file == NULL)
+	{
+		EXIT_ERR("file not found");
+	}
 
 	file_out = fopen(filename_out, "wb");
 
-    size_t file_size;
-    if (get_file_size(&file_size, file) != 0)
-        EXIT_ERR("error get file size");
-	
+	size_t file_size;
+	if (get_file_size(&file_size, file) != 0)
+		EXIT_ERR("error get file size");
+
 	printf("%lu\n", file_size);
 
 	unsigned char input[file_size+1];
@@ -93,18 +93,18 @@ int main(int argc, char** argv)
 	// FILE* file;
 	// FILE* file_out;
 
-    // file = fopen(filename, "r");
-    // if (file == NULL)
-    // {
-    //     EXIT_ERR("file not found");
-    // }
+	// file = fopen(filename, "r");
+	// if (file == NULL)
+	// {
+	//     EXIT_ERR("file not found");
+	// }
 
 	// file_out = fopen(filename_out, "wb");
 
-    // size_t file_size;
-    // if (get_file_size(&file_size, file) != 0)
-    //     EXIT_ERR("error get file size");
-	
+	// size_t file_size;
+	// if (get_file_size(&file_size, file) != 0)
+	//     EXIT_ERR("error get file size");
+
 	// printf("%lu\n", file_size);
 
 	// unsigned char input[file_size+1];
