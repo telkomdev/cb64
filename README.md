@@ -15,11 +15,12 @@ $ mkdir build
 $ cd build/
 $ cmake ..
 $ make
+$ cd ..
 ```
 
 Run example binary
 ```shell
-$ ../bin/cb64 ../testdata/octocat.png 
+$ ./bin/cb64 ./testdata/octocat.png
 ```
 
 ### Usage
