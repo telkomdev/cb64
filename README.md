@@ -7,7 +7,7 @@ Base64 Encoding implementation in C Programming Language
 Spec: https://datatracker.ietf.org/doc/html/rfc4648#page-5
 
 ### Header only
-So just copy `cb64.h` to your project, and you ready to go
+So just copy [`cb64.h`](https://github.com/telkomdev/cb64/blob/master/b64/cb64.h) to your project, and you ready to go
 
 
 ### Building Example
