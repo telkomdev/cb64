@@ -11,6 +11,11 @@
 
 #define B64_TABLE_SIZE 64
 
+#define B64_ENCODE_OK 0
+#define B64_ENCODE_FAIL -1
+#define B64_DECODE_OK 0
+#define B64_DECODE_FAIL -1
+
 struct base64_table_dict
 {
     char key;
@@ -73,7 +78,7 @@ int encode_b64(const unsigned char* src, size_t src_size, unsigned char** dst, s
     // caller should call free()
     unsigned char* _dst = (unsigned char*) malloc(sizeof(*_dst) * _dst_size + 2);
     if (_dst == NULL)
-        return -1;
+        return B64_ENCODE_FAIL;
 
     FILE* f = fmemopen((void*)src, src_size, "r");
     FILE* base64_res_f = fmemopen((void*)_dst, sizeof(*_dst) * _dst_size + 2, "w");
@@ -139,7 +144,8 @@ int encode_b64(const unsigned char* src, size_t src_size, unsigned char** dst, s
     
     fclose(f);
     fclose(base64_res_f);
-    return 0;
+
+    return B64_ENCODE_OK;
 }
 
 int decode_b64(const unsigned char* src, size_t src_size, unsigned char** dst, size_t* dst_size)
@@ -153,7 +159,7 @@ int decode_b64(const unsigned char* src, size_t src_size, unsigned char** dst, s
     // caller should call free()
     unsigned char* _dst = (unsigned char*) malloc(sizeof(*_dst) * _dst_size);
     if (_dst == NULL)
-        return -1;
+        return B64_DECODE_FAIL;
 
     FILE* base64_in_f = fmemopen((void*)src, src_size, "r");
     FILE* text_f = fmemopen((void*)_dst, sizeof(*_dst) * _dst_size, "w");
@@ -208,7 +214,7 @@ int decode_b64(const unsigned char* src, size_t src_size, unsigned char** dst, s
     fclose(base64_in_f);
     fclose(text_f);
     
-    return 0;
+    return B64_DECODE_OK;
 }
 
 #endif
