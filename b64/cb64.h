@@ -119,9 +119,9 @@ int encode_b64(const unsigned char* src, size_t src_size, unsigned char** dst, s
             uint32_t r_shift = 18 - i * 6;
             uint8_t idx_b = (uint8_t) (dec >> r_shift) & SIX_BIT_MASK;
 
-            uint8_t c = BASE_64_TABLE[idx_b];
+            uint8_t c_b64 = BASE_64_TABLE[idx_b];
 
-            fputc(c, base64_res_f);
+            fputc(c_b64, base64_res_f);
             size_out = size_out + 1;
         }
         if (segment_count == 2)
@@ -198,9 +198,9 @@ int decode_b64(const unsigned char* src, size_t src_size, unsigned char** dst, s
         for (int i = 0; i < segment_count-1; i++)
         {
             uint32_t r_shift = 16 - i * 8;
-            uint8_t code_point = (uint8_t) (dec >> r_shift) & EIGHT_BIT_MASK;
+            uint8_t c_b255 = (uint8_t) (dec >> r_shift) & EIGHT_BIT_MASK;
 
-            fputc(code_point, text_f);
+            fputc(c_b255, text_f);
             size_out = size_out + 1;
         }
 
