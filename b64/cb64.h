@@ -45,14 +45,14 @@ static void init_b64_table_dict()
     }
 }
 
-static uint8_t base64_table_dict_find(char key)
+static struct base64_table_dict base64_table_dict_find(char key)
 {
     for (int i = 0; i < B64_TABLE_SIZE; i++)
     {
         if (dict[i].key == key)
-            return i;
+            return dict[i];
     }
-    return 0;
+    return b64_dict_t;
 }
 
 static uint64_t size_char_ptr(const unsigned char* arr)
@@ -189,8 +189,9 @@ int decode_b64(const unsigned char* src, size_t src_size, unsigned char** dst, s
             if (buffer[i] == '\0' || buffer[i] == PADDING) 
                 continue;
 
-            uint64_t b64_idx = (uint64_t) base64_table_dict_find(buffer[i]);
+            struct base64_table_dict b64_idx_dict = base64_table_dict_find(buffer[i]);
             uint32_t l_shift = 18 - segment_count * 6;
+            uint32_t b64_idx = (uint32_t) b64_idx_dict.val;
             dec |= b64_idx << l_shift;
             segment_count = segment_count + 1;
         }
