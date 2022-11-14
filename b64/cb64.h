@@ -82,12 +82,12 @@ int encode_b64(const unsigned char* src, size_t src_size,
         (uint32_t)(ceil((double) src_size/(double) 3) + (double) src_size);
 
     // caller should call free()
-    unsigned char* _dst = (unsigned char*) malloc(sizeof(*_dst) * _dst_size + 2);
+    unsigned char* _dst = (unsigned char*) malloc(sizeof(*_dst) * _dst_size + 3);
     if (_dst == NULL)
         return B64_ENCODE_FAIL;
 
     FILE* f = fmemopen((void*)src, src_size, "r");
-    FILE* base64_res_f = fmemopen((void*)_dst, sizeof(*_dst) * _dst_size + 2, "w");
+    FILE* base64_res_f = fmemopen((void*)_dst, sizeof(*_dst) * _dst_size + 3, "w");
 
     unsigned char buffer[4];
     uint32_t size_out = 0;
@@ -133,13 +133,13 @@ int encode_b64(const unsigned char* src, size_t src_size,
         if (segment_count == 2)
         {
             fputc(PADDING, base64_res_f);
-            size_out = size_out + 1;
+            size_out = size_out + 2;
         }
         if (segment_count == 1)
         {
             fputc(PADDING, base64_res_f);
             fputc(PADDING, base64_res_f);
-            size_out = size_out + 2;
+            size_out = size_out + 3;
         }
 
     }
@@ -165,12 +165,12 @@ int decode_b64(const unsigned char* src, size_t src_size,
         (uint32_t)((ceil((double) src_size/(double) 4)) * (double) 3);
 
     // caller should call free()
-    unsigned char* _dst = (unsigned char*) malloc(sizeof(*_dst) * _dst_size);
+    unsigned char* _dst = (unsigned char*) malloc(sizeof(*_dst) * _dst_size + 1);
     if (_dst == NULL)
         return B64_DECODE_FAIL;
 
     FILE* base64_in_f = fmemopen((void*)src, src_size, "r");
-    FILE* text_f = fmemopen((void*)_dst, sizeof(*_dst) * _dst_size, "w");
+    FILE* text_f = fmemopen((void*)_dst, sizeof(*_dst) * _dst_size + 1, "w");
 
     unsigned char buffer[5];
     uint32_t size_out = 0;
